@@ -23,6 +23,7 @@ declare namespace wget {
       headers?: Record<string, string>,
     } | string,
     method?: string,
+    headers?: Record<string, string>
   }
 }
 

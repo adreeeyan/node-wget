@@ -70,6 +70,15 @@ app.get('/file/redirect/metadata', function(req, res) {
     });
 });
 
+
+app.get('/file/headers', function(req, res) {
+    if (req.headers.authorization == "Bearer Auth") {
+        res.status(200).end();
+    } else {
+        res.status(401).end();
+    }
+});
+
 module.exports = function() {
     return new Promise(function(resolve, reject) {
         app.listen(8994, function() {

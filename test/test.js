@@ -202,4 +202,25 @@ describe('Download Tests', function() {
             done();
         }
     });
+
+    it('Should receive request header', function(done) {
+        let download = wget.download(
+            'http://localhost:8994/file/headers',
+            '/tmp/wget-test-file.bin',
+            {
+                headers: {
+                    "authorization": "Bearer Auth"
+                }
+            }
+        );
+        download.on('error', function(err) {
+            console.log(err);
+            expect(err).to.be.null;
+            done();
+        });
+        download.on('end', function(output) {
+            expect(output).to.equal('Finished writing to disk');
+            done();
+        });
+    });
 });
