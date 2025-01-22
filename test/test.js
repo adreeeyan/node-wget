@@ -223,4 +223,16 @@ describe('Download Tests', function() {
             done();
         });
     });
+
+    it('Should emit a redirect event', function(done) {
+        let download = wget.download(
+            'http://localhost:8994/file/redirect',
+            '/tmp/wget-test-file.bin'
+        );
+        download.on('redirect', function(oldUrl, newUrl) {
+            console.log(oldUrl, newUrl);
+            expect(newUrl).to.be.not.null;
+            done();
+        });
+    });
 });
